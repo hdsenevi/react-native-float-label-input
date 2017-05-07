@@ -14,20 +14,23 @@ class App extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>
-                    Welcome to Animated Text Field example!
+                    Placeholder Animated Text Field
                 </Text>
 
                 <TextFieldAnimated
-                    label="Title"
-                    // value="This is the title"
-                    onChangeText={ () => {} }
-                    placeholder={'Title'}
-                />
-                <TextFieldAnimated
                     label="Name"
-                    // value="This is the title"
-                    onChangeText={ () => {} }
+                    // onChangeText={ () => {} }
                     placeholder={'Name'}
+                />
+
+                <TextFieldAnimated
+                    label="Handle"
+                    placeholder={'Handle'}
+                />
+
+                <TextFieldAnimated
+                    label="Email"
+                    placeholder={'Email'}
                 />
             </View>
         );
@@ -41,9 +44,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     welcome: {
-        fontSize: 17,
+        fontSize: 15,
         textAlign: 'left',
         margin: 10,
+        color: '#60646f',
+        marginLeft: 30,
     },
     instructions: {
         textAlign: 'center',

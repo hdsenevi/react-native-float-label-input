@@ -11,6 +11,9 @@ import {
 } from 'react-native';
 import TextFieldContainer from './TextFieldContainer';
 
+const TEXT_ANIMATION_DURATION = 250;
+const TEXT_OFFSET_Y = 15;
+
 const TextFieldAnimationState = {
     Default: 1,
     FocusedFloatedPlaceholder: 2,
@@ -22,52 +25,91 @@ class TextFieldAnimated extends Component {
     constructor(props) {
         super(props);
 
-        tfAnimState = TextFieldAnimationState.Default;
+        this.tfAnimState = TextFieldAnimationState.Default;
 
-        // position = new Animated.ValueXY();
         const position = new Animated.ValueXY();
-        position.setValue({ x: 0, y: 17 });
+        position.setValue({ x: 0, y: TEXT_OFFSET_Y });
         this.position = position;
 
-        const op = new Animated.Value(0);
-        this.textOpacity = op;
+        this.textOpacity = new Animated.Value(0);
+
+        this.placeholderColorFocused = new Animated.Value(0);
+        this.placeholderColor = this.placeholderColorFocused.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['#177dfb', '#c6c0bf']
+        });
     }
 
     componentDidMount() {
+
     }
 
     getPlaceholderStyle() {
         return {
             ...this.position.getLayout(),
-            opacity: this.textOpacity
+            opacity: this.textOpacity,
+            color: this.placeholderColor,
         };
     }
 
     onTextFieldTextChange(changedText) {
         const inputLength = changedText.length;
 
-        console.log(inputLength);
+        console.log(`inputLength : ${inputLength} | state : ${this.tfAnimState}`);
 
-        if (inputLength == 0) {
-            console.log('Reverse placeholder Animtion to default place holder!!!');
-            tfAnimState = TextFieldAnimationState.Default;
+        if (inputLength === 0) {
+            // Reverse placeholder Animation to default place holder!!!
+
+            Animated.timing(this.position, {
+                toValue: { x: 0, y: TEXT_OFFSET_Y },
+                duration: TEXT_ANIMATION_DURATION,
+            }).start();
+
+            Animated.timing(this.textOpacity, {
+                toValue: 0,
+                duration: TEXT_ANIMATION_DURATION,
+            }).start();
+
+            this.tfAnimState = TextFieldAnimationState.Default;
             return
         }
 
-        if (inputLength > 0 && tfAnimState === TextFieldAnimationState.Default) {
-            console.log('placeholder ANIMATE!!!');
+        if (inputLength > 0 && this.tfAnimState === TextFieldAnimationState.Default) {
+            // placeholder animate into place
 
             Animated.timing(this.position, {
                 toValue: { x: 0, y: 0 },
-                duration: 250,
-            }).start();
-            Animated.timing(this.textOpacity, {
-                toValue: 1,
-                duration: 250,
+                duration: TEXT_ANIMATION_DURATION,
             }).start();
 
-            tfAnimState = TextFieldAnimationState.FocusedFloatedPlaceholder;
+            Animated.timing(this.textOpacity, {
+                toValue: 1,
+                duration: TEXT_ANIMATION_DURATION,
+            }).start();
+
+            this.tfAnimState = TextFieldAnimationState.FocusedFloatedPlaceholder;
         }
+    }
+
+    onTextFieldUnfocused() {
+        this.placeholderColorFocused.setValue(0);
+        Animated.timing(this.placeholderColorFocused, {
+            toValue: 1,
+            duration: TEXT_ANIMATION_DURATION,
+        }).start();
+
+        console.log(`placeholderColorFocused :${this.placeholderColorFocused.toString()}`);
+    }
+
+    onTextFieldFocused() {
+        this.placeholderColorFocused.setValue(1);
+        Animated.timing(this.placeholderColorFocused, {
+            toValue: 0,
+            duration: TEXT_ANIMATION_DURATION,
+        }).start();
+
+        // this.tfAnimState = TextFieldAnimationState.FocusedFloatedPlaceholder;
+        console.log(`placeholderColorFocused :${this.placeholderColorFocused.toString()}`);
     }
 
     render() {
@@ -99,12 +141,20 @@ class TextFieldAnimated extends Component {
                                 this.onTextFieldTextChange(changedText);
                             }
                         }
+                        onFocus={ () => {
+                            console.log(`onFocus : ${label}`);
+                            this.onTextFieldFocused();
+                        }}
+                        onBlur={ () => {
+                            console.log(`onBlur : ${label}`);
+                            this.onTextFieldUnfocused();
+                        }}
                     />
                 </View>
             </TextFieldContainer>
         );
     }
-};
+}
 
 const styles = {
     inputStyle: {
@@ -121,7 +171,7 @@ const styles = {
         paddingLeft: 5,
         flex: 1,
         fontWeight: 'bold',
-        color: '#177dfb',
+        // color: '#177dfb',
     },
     containerStyle: {
         height: 40,
