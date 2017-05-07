@@ -24,7 +24,7 @@ class App extends Component {
                     placeholder={'Title'}
                 />
                 <TextFieldAnimated
-                    label="Price"
+                    label="Name"
                     // value="This is the title"
                     onChangeText={ () => {} }
                     placeholder={'Name'}
