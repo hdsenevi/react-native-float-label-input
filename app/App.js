@@ -8,7 +8,6 @@ import {
     View
 } from 'react-native';
 import TextFieldAnimated from './components/TextFieldAnimated';
-import TextFieldContainer from './components/TextFieldContainer';
 
 class App extends Component {
     render() {
@@ -18,14 +17,18 @@ class App extends Component {
                     Welcome to Animated Text Field example!
                 </Text>
 
-                <TextFieldContainer>
-                    <TextFieldAnimated
-                        label="Title"
-                        // value="This is the title"
-                        onChangeText={ () => {} }
-                        placeholder={'Placeholder'}
-                    />
-                </TextFieldContainer>
+                <TextFieldAnimated
+                    label="Title"
+                    // value="This is the title"
+                    onChangeText={ () => {} }
+                    placeholder={'Title'}
+                />
+                <TextFieldAnimated
+                    label="Price"
+                    // value="This is the title"
+                    onChangeText={ () => {} }
+                    placeholder={'Name'}
+                />
             </View>
         );
     }
@@ -35,9 +38,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: 25,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#ffffff',
     },
     welcome: {
         fontSize: 17,

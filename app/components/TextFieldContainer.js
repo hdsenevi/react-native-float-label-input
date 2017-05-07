@@ -17,17 +17,13 @@ const styles = {
     containerStyle: {
         borderWidth: 1,
         borderRadius: 2,
-        borderColor: '#ddd',
+        borderColor: '#d5d5d5',
         borderWidth: 0,
         borderBottomWidth: 1,
-        // shadowColor: '#000',
-        // shadowOffset: { width: 0, height: 2 },
-        // shadowOpacity: 0.1,
-        // shadowRadius: 2,
         elevation: 1,
         marginLeft: 25,
         marginRight: 5,
-        marginTop: 10
+        marginTop: 5
     }
 };
 
