@@ -37,6 +37,10 @@ react-native run-ios
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+## Tested
+
+Only tested on iOS as of yet.
+
 ## Acknowledgments (Hat tip)
 
 * Inspiration GIF (https://dribbble.com/shots/1254439--GIF-Float-Label-Form-Interaction) by [MDS](https://dribbble.com/mds)
