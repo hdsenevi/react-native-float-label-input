@@ -7,21 +7,25 @@ import {
     Text,
     View
 } from 'react-native';
+import TextFieldAnimated from './components/TextFieldAnimated';
+import TextFieldContainer from './components/TextFieldContainer';
 
 class App extends Component {
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>
-                    Welcome to React Native!
+                    Welcome to Animated Text Field example!
                 </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.ios.js
-                </Text>
-                <Text style={styles.instructions}>
-                    Press Cmd+R to reload,{'\n'}
-                    Cmd+D or shake for dev menu
-                </Text>
+
+                <TextFieldContainer>
+                    <TextFieldAnimated
+                        label="Title"
+                        // value="This is the title"
+                        onChangeText={ () => {} }
+                        placeholder={'Placeholder'}
+                    />
+                </TextFieldContainer>
             </View>
         );
     }
@@ -30,13 +34,14 @@ class App extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginTop: 25,
+        // justifyContent: 'center',
+        // alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
     welcome: {
-        fontSize: 20,
-        textAlign: 'center',
+        fontSize: 17,
+        textAlign: 'left',
         margin: 10,
     },
     instructions: {
