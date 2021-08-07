@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import {TextInput, View, Text, Animated} from 'react-native';
+import {TextInput, View, Animated} from 'react-native';
 import TextFieldContainer from './TextFieldContainer';
 
 const TEXT_ANIMATION_DURATION = 250;
@@ -47,11 +47,8 @@ class TextFieldAnimated extends Component {
   onTextFieldTextChange(changedText) {
     const inputLength = changedText.length;
 
-    console.log(`inputLength : ${inputLength} | state : ${this.tfAnimState}`);
-
     if (inputLength === 0) {
       // Reverse placeholder Animation to default place holder!!!
-
       Animated.timing(this.position, {
         toValue: {x: 0, y: TEXT_OFFSET_Y},
         duration: TEXT_ANIMATION_DURATION,
@@ -73,7 +70,6 @@ class TextFieldAnimated extends Component {
       this.tfAnimState === TextFieldAnimationState.Default
     ) {
       // placeholder animate into place
-
       Animated.timing(this.position, {
         toValue: {x: 0, y: 0},
         duration: TEXT_ANIMATION_DURATION,
@@ -97,10 +93,6 @@ class TextFieldAnimated extends Component {
       duration: TEXT_ANIMATION_DURATION,
       useNativeDriver: false,
     }).start();
-
-    console.log(
-      `placeholderColorFocused :${this.placeholderColorFocused.toString()}`,
-    );
   }
 
   onTextFieldFocused() {
@@ -110,22 +102,11 @@ class TextFieldAnimated extends Component {
       duration: TEXT_ANIMATION_DURATION,
       useNativeDriver: false,
     }).start();
-
-    // this.tfAnimState = TextFieldAnimationState.FocusedFloatedPlaceholder;
-    console.log(
-      `placeholderColorFocused :${this.placeholderColorFocused.toString()}`,
-    );
   }
 
   render() {
-    const {inputStyle, labelStyle, containerStyle} = styles;
-    const {
-      label,
-      value,
-      onChangeText,
-      placeholder,
-      secureTextEntry,
-    } = this.props;
+    const {inputStyle, containerStyle} = styles;
+    const {label, value, placeholder, secureTextEntry} = this.props;
 
     return (
       <TextFieldContainer>
@@ -143,22 +124,11 @@ class TextFieldAnimated extends Component {
             placeholderTextColor="#b6b6b6"
             value={value}
             onChangeText={
-              // the call back for the caller to take any actions on
-              // onChangeText('text')
-              (changedText) => {
-                console.log(changedText);
-
-                this.onTextFieldTextChange(changedText);
-              }
+              // the call back for the caller to take any actions onChangeText
+              (changedText) => this.onTextFieldTextChange(changedText)
             }
-            onFocus={() => {
-              console.log(`onFocus : ${label}`);
-              this.onTextFieldFocused();
-            }}
-            onBlur={() => {
-              console.log(`onBlur : ${label}`);
-              this.onTextFieldUnfocused();
-            }}
+            onFocus={() => this.onTextFieldFocused()}
+            onBlur={() => this.onTextFieldUnfocused()}
           />
         </View>
       </TextFieldContainer>
