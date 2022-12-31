@@ -3,7 +3,7 @@
 Title says it all (well, most of it at least). This is a React Native text input/field where the placeholder text is animated to be on top of the user input while user is interacting with the component.
 
 ## GIF
-![](https://github.com/hdsenevi/PlaceholderAnimatedTextField/blob/feature/docs/docs/TextFieldAnimated.gif)
+![](https://github.com/hdsenevi/react-native-float-label-input/blob/master/docs/TextFieldAnimated.gif)
 
 ## Getting Started
 
