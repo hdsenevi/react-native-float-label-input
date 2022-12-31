@@ -1,14 +1,13 @@
 /**
- * Created by sha on 7/5/17.
+ * Created by Sha Senevirathna on 31/12/22.
  */
-import React, {Component} from 'react';
-import {StyleSheet, Text, SafeAreaView} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import TextFieldAnimated from './components/TextFieldAnimated';
 
-class App extends Component {
-  render() {
-    return (
-      <SafeAreaView>
+export default function App() {
+  return (
+    <SafeAreaView style={styles.container}>
         <Text style={styles.welcome}>Floating Label Text Field</Text>
         <TextFieldAnimated
           label="Name"
@@ -17,15 +16,15 @@ class App extends Component {
         />
         <TextFieldAnimated label="Handle" placeholder={'Handle'} />
         <TextFieldAnimated label="Email" placeholder={'Email'} />
+        <StatusBar style="auto" />
       </SafeAreaView>
-    );
-  }
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
   },
   welcome: {
     fontSize: 15,
@@ -34,11 +33,4 @@ const styles = StyleSheet.create({
     color: '#60646f',
     marginLeft: 30,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
-
-export default App;

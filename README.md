@@ -9,24 +9,26 @@ Title says it all (well, most of it at least). This is a React Native text input
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
-
-Make sure you can run a [vanilla React native app](https://facebook.github.io/react-native/docs/getting-started.html) before downloading to this repo if you want to run the example given here.
-
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Download this repo, go inside repo folder
-
+Download repo 
 ```
-npm install
+git clone https://github.com/hdsenevi/react-native-float-label-input
 ```
 
-This will install all the npm packages necessary to run the react native build
-
+Go inside project folder
 ```
-react-native run-ios
+cd react-native-float-label-input
+```
+
+Install dependancies
+```
+yarn
+```
+
+Run ios
+```
+yarn ios
 ```
 
 ## Author
