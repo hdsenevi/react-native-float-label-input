@@ -31,6 +31,9 @@ Run ios
 yarn ios
 ```
 
+## Tested with 
+* node : 18
+
 ## Author
 
 * **Shanaka 'Sha' Senevirathne** - *Initial work* - [hdsenevi github ](https://github.com/hdsenevi) | [twitter](https://twitter.com/hdsenevi)
