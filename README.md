@@ -23,16 +23,17 @@ cd react-native-float-label-input
 
 Install dependancies
 ```
-yarn
+pnpm install
 ```
 
 Run ios
 ```
-yarn ios
+pnpm ios
 ```
 
-## Tested with 
-* node : 18
+## Tested with
+
+* node : 22
 
 ## Author
 
